@@ -12,7 +12,9 @@ def render_main():
     
 @app.route("/all")
 def render_all():
-    return render_template('allgames.html')
+    allnam = all_game_names()
+    #print allnam
+    return render_template('allgames.html', alln = allnam)
     
 @app.route("/pop")
 def render_pop():
@@ -21,6 +23,18 @@ def render_pop():
 @app.route("/avg")
 def render_avg():
     return render_template('avg.html')
+    
+    
+def all_game_names():
+    """Return the html code for the drop down menu.  Each option is a state abbreviation from the demographic data."""
+    with open('video_games.json') as corgis_data:
+        names = json.load(corgis_data)
+    allnam=[]
+    for x in names:
+        if x["Title"] not in allnam:
+            allnam.append(x["Title"])
+            
+    return allnam
     
 if __name__=="__main__":
     app.run(debug=False)
