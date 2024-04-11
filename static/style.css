@@ -1,12 +1,17 @@
 p {
-  color: red;
+  color: steelblue ;
 }
 
 body {
 	
 }
+h2{
+	font-weight: bold;
+}
 img {
   border: 5px solid #555;
+  height:50%;
+  width:50%;
 }
 .navbar {
   width: 100%;
@@ -20,14 +25,15 @@ img {
   color: white;
   text-decoration: none;
   font-size: 17px;
+  background-color: darkcyan;
 }
 
 .navbar a:hover {
-  background-color: #ddd;
+  background-color: mediumturquoise;
 }
 
 .active {
-  background-color: #04AA6D;
+  background-color: DarkCyan;
 }
 
 @media screen and (max-width: 500px) {
