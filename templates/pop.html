@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
+<!--
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
@@ -12,32 +8,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="static/style.css">
+-->
 
-</head>
-<body>
+{% extends "layout.html" %}
 
-<nav class="navbar navbar-expand-sm bg-info navbar-dark">
-  <ul class="navbar-nav">
-    <li class="nav-item active">
-      <a class="nav-link" href="/"><i class="fa fa-fw fa-home"></i></a>
-    </li>
-	<li class="nav-item">
-      <a class="nav-link" href="/all">All Games and Publishers</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/pop">Popularity of Games</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/avg">Average Time to Complete</a>
-    </li>
-	
-  </ul>
-</nav>
+{% set active_page = "page2" %}
+
+{% block title %}Page 2{% endblock %}
+
+{% block content %}
+   
+
 
 <p> popularity page </p>
+<h5><a href="/all"> << Previous Page </a></h5>
+<h5><a href="/avg">Next Page >> </a></h5>
+
+<form action="/pop">
+  <label for="cars">Choose a year:</label>
+  <select name="year" id="years">
+    <option value="2004" {% if year == 2004 %}selected{% endif %}>2004</option>
+    <option value="2005"{% if year == 2005 %}selected{% endif %}>2005</option>
+    <option value="2006"{% if year == 2006 %}selected{% endif %}>2006</option>
+    <option value="2007" {% if year == 2007 %}selected{% endif %}>2007</option>
+	<option value="2008"{% if year == 2008 %}selected{% endif %}>2008</option>
+  </select>
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
+
 <ol>
 <p> {%- for number in popg %}</p>
 <li> {{number}} </li>
 {% endfor %}
 </ol>
-</body>
+
+{% endblock %}

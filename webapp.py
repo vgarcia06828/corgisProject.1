@@ -20,12 +20,18 @@ def render_all():
 def render_pop():
     pop = pop_gam()
     #print pop
-    return render_template('pop.html', popg = pop)
+    year = 2004
+    if "year" in request.args:
+        year = int(request.args["year"])
+    return render_template('pop.html', popg = pop, year = year)
     
 @app.route("/avg")
 def render_avg():
     return render_template('avg.html')
     
+@app.route("/fft")
+def render_fft():
+    return render_template('funfact.html')
     
 def all_game_names():
     with open('video_games.json') as corgis_data:
@@ -41,11 +47,13 @@ def pop_gam():
     allnum=[]
     for x in num:
         allnum.append ({x["Metrics"]["Sales"]:x["Release"]["Year"]})
-    return allnum 
+    return allnum
     
-def pop_year():
-    with open('video_games.json') as corgis_data:
-        year
+#def pop_year():
+   # """with open('video_games.json') as corgis_data:"""
+        
+#def highest_mil():
+# with open('video_games.json') as corgis_data:"""
     
 if __name__=="__main__":
-    app.run(debug=False)
+        app.run(debug=False)
