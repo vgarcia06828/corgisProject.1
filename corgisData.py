@@ -18,7 +18,13 @@ def game_pop():
         num = corgis_data["Metrics"]["Sales"]
     return num
     
-def game_year():
+def average_times():
+    numb = 0
+    avg = corgis_data["Length"]["All PlayStyles"]["Average"]
+    for num in corgis_data
+        avg = avg+num 
+    avg = avg /len(numb)
+    return avg
     
 """note: remember to make a return that says wether or not the chosen game is the sequel to another game (hint: it should respond with true or false)"""
 """add what the producers are, and who produced them. """

@@ -27,8 +27,10 @@ def render_pop():
     
 @app.route("/avg")
 def render_avg():
-    return render_template('avg.html')
-    
+    avg = average_times()
+    fact = "the average time between games is " + str(avg)
+    return render_template('avg.html', oneFact = fact)
+
 @app.route("/fft")
 def render_fft():
     return render_template('funfact.html')
@@ -49,6 +51,14 @@ def pop_gam():
         allnum.append ({x["Metrics"]["Sales"]:x["Release"]["Year"]})
     return allnum
     
+def average_times():
+    with open('video_games.json') as corgis_data:
+        nu = json.load(corgis_data)
+    avg = 0
+    for num in nu:
+        avg = avg+num["Length"]["All PlayStyles"]["Average"] 
+    avg = avg /len(nu)
+    return avg
 #def pop_year():
    # """with open('video_games.json') as corgis_data:"""
         
