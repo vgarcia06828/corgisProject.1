@@ -19,17 +19,22 @@ def render_all():
 @app.route("/pop")
 def render_pop():
     pop = pop_gam()
+    
     #print pop
     year = 2004
     if "year" in request.args:
         year = int(request.args["year"])
+        ganam = popgame_2004(year)
+        text = "The most sold game in " + str(year) +" was " + str(ganam) + "!!"
+        return render_template("pop.html", ganam = text, year = year)
     return render_template('pop.html', popg = pop, year = year)
     
 @app.route("/avg")
 def render_avg():
     avg = average_times()
-    fact = "the average time between games is " + str(avg)
-    return render_template('avg.html', oneFact = fact)
+    alnam = all_game_names()
+    fact = "the average time to finish games is " + str(avg) + " hours"
+    return render_template('avg.html', oneFact = fact, aln = alnam, avg = avg, points=format_dict_as_graph_points())
 
 @app.route("/fft")
 def render_fft():
@@ -59,11 +64,33 @@ def average_times():
         avg = avg+num["Length"]["All PlayStyles"]["Average"] 
     avg = avg /len(nu)
     return avg
-#def pop_year():
-   # """with open('video_games.json') as corgis_data:"""
-        
-#def highest_mil():
-# with open('video_games.json') as corgis_data:"""
+    
+def popgame_2004(year):
+    """Return the game with the higest sales in one year."""
+    with open('video_games.json') as corgis_data:
+        years = json.load(corgis_data)
+    highest=0
+    name = ""
+    for x in years:
+        if x["Release"]["Year"] == year:
+            if x["Metrics"]["Sales"] > highest:
+                highest = x["Metrics"]["Sales"]
+                name = x["Title"]
+    return name
+    
+def format_dict_as_graph_points():
+    with open('video_games.json') as corgis_data:
+        vv = json.load(corgis_data)
+        graph_points = ""
+        tak = 0
+        for game in vv:
+            graph_points = graph_points + Markup('{label: "' + game["Title"] + '" , y: ' + str(game["Length"]["All PlayStyles"]["Average"])+'}, ')
+            #if tak > 1:
+             #   break
+           # tak = tak + 1
+        graph_points = graph_points[:-2]
+        print(graph_points)
+    return graph_points
     
 if __name__=="__main__":
         app.run(debug=False)

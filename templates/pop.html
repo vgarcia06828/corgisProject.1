@@ -19,10 +19,9 @@
 {% block content %}
    
 
-
-<p> popularity page </p>
-<h5><a href="/all"> << Previous Page </a></h5>
-<h5><a href="/avg">Next Page >> </a></h5>
+<br>
+<h2>Out of the 5 options available, choose one to see what the most popular game of the year was!</h2>
+<br>
 
 <form action="/pop">
   <label for="cars">Choose a year:</label>
@@ -37,10 +36,18 @@
   <input type="submit" value="Submit">
 </form>
 
+<br>
+{{ganam}}
+
+<br> 
+<br>
+<h5><a href="/all"> << Previous Page </a></h5>
+<h5><a href="/avg">Next Page >> </a></h5>
+<!--
 <ol>
 <p> {%- for number in popg %}</p>
 <li> {{number}} </li>
 {% endfor %}
 </ol>
-
+--> 
 {% endblock %}

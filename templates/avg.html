@@ -6,15 +6,39 @@
 
 {% block content %}
   
-
-
-<p> average page </p>
+<h5><a href="/pop"> << Previous Page </a></h5>
 {{oneFact}}
 
 
 
-<h5><a href="/pop"> << Previous Page </a></h5>
+
+
+
+
+<script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+<script type="text/javascript">
+
+
+
+window.onload = function () {
+	var chart = new CanvasJS.Chart("chartContainer", {
+		title:{
+			text: "How long it takes to finish a game"              
+		},
+		data: [              
+		{
+			// 
+			type: "column",
+			dataPoints: [
+				{{points}}
+			]
+		}
+		]
+	});
+	chart.render();
+}
+</script>
 <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 
-<script src="static/jquery.js"></script>
+
 {% endblock %}
