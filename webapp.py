@@ -33,7 +33,7 @@ def render_pop():
 def render_avg():
     avg = average_times()
     alnam = all_game_names()
-    fact = "the average time to finish games is " + str(avg) + " hours"
+    fact = "The average time to finish games is " + str(avg) + " hours!"
     return render_template('avg.html', oneFact = fact, aln = alnam, avg = avg, points=format_dict_as_graph_points())
 
 @app.route("/fft")
